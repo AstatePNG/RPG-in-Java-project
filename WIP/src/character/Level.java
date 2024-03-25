@@ -41,12 +41,13 @@ public class Level {
 			}
 			else {
 				while(xp >= xpToNextLevel) {
-					xp -= xpToNextLevel;
 					if(!isLegalLevel(this.currentLevel+1)) {
 						throw new IllegalArgumentException("La quantité d'experience entrée est trop importante");
 					}
 					else {
+						xp -= xpToNextLevel;
 						currentLevel += 1;
+						this.refreshXpToNextLevel();
 					}
 				}
 				this.xp = xp;
@@ -83,6 +84,7 @@ public class Level {
 				else {
 					xpToAdd -= xpToNextLevel;
 					currentLevel += 1;
+					this.refreshXpToNextLevel();
 				}
 			}
 			xp += xpToAdd;
